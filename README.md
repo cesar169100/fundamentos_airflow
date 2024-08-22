@@ -33,5 +33,26 @@ El DAG en Airflow se utiliza para orquestar tareas complejas, asegurando que se 
     Descripción: Ejecuta un pod en un clúster de Kubernetes.
     Uso: Ideal para ejecutar tareas en un entorno Kubernetes.
     Ejemplo: `KubernetesPodOperator(task_id='run_pod', name='my_pod', image='my_image')`
+# Airflow Scheduler
+El scheduler de Airflow es el componente que se encarga de programar y ejecutar las tareas definidas en los DAGs (Directed Acyclic Graphs). El scheduler monitorea continuamente los DAGs para determinar cuándo deben ejecutarse las tareas según los intervalos de tiempo definidos o en respuesta a eventos específicos. Cuando una tarea está lista para ejecutarse, el scheduler la coloca en una cola para que los workers la procesen.
+# Instalación de Apache Airflow usando Docker
+- Para ambientes productivos se recomienda mediante helm: "If you want to get an easy to configure Docker-based deployment that Airflow Community develops, supports and can provide support with deployment, you should consider using Kubernetes and deploying Airflow using Official Airflow Community Helm Chart"
+- Descargar el docker-compose de airflow mediante: 
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.3.3/docker-compose.yaml'
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.10.0/docker-compose.yaml'
+puedes cambiar la version, por ejemplo, en vez de 2.3.3 pueder ser 2.10.0 que es la mas reciente.
+- Hacer los siguientes cambios en el docker-compose.yaml: 
+AIRFLOW__CORE__LOAD_EXAMPLES: 'false' (linea 62)
+AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 5 (Este ya no viene en versiones recientes)
+- Ejecutar:
+docker compose down --volumes --remove-orphans
+mkdir -p ./dags ./logs ./plugins ./config
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+docker compose up airflow-init
+docker compose up
 
-
+- Luego podrás acceder a la interfaz gráfica de Airflow mediante http://localhost:8080/ con user y pass igual a airflow
+- docker rm -f $(docker ps -aq) : Eliminar todos los conatiners
+- NOTA: Se levanto airflow en la version antigua 2.3.3, esta manera no es recomendable en prod, la usare para el curso hasta que vea como levantar airflow en un cluster de eks mediante helm, que es lo recomendado para ambientes productivos.
+# Posibles configuraciones
+- Hacerlas en el docker compose, en la seccion enviroment linea 54 vienen algunas pero obvio hay mas y estan en los docs de airflow.
