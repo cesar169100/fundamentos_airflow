@@ -56,3 +56,12 @@ docker compose up
 - NOTA: Se levanto airflow en la version antigua 2.3.3, esta manera no es recomendable en prod, la usare para el curso hasta que vea como levantar airflow en un cluster de eks mediante helm, que es lo recomendado para ambientes productivos.
 # Posibles configuraciones
 - Hacerlas en el docker compose, en la seccion enviroment linea 54 vienen algunas pero obvio hay mas y estan en los docs de airflow.
+# Variables y conexiones
+- Definir variables en Airflow sirve para almacenar valores que pueden ser reutilizados en múltiples DAGs o tasks. Estas variables permiten que los flujos de trabajo sean más flexibles y dinámicos, facilitando la configuración de parámetros como rutas de archivos, credenciales, etc.
+- Para una variable, en la interfaz grafica, ir a Admin -> Variables -> Crearla dando nombre, valor y descripcion. O importarla de un doc.
+Tambien en Admin vamos a conexiones -> add new record -> Especificar sus atributos tipo nombre, url, host, user, password etc
+- Hay distintos tipos de proovedores a los que podemos crear una conexion (aws s3, aws rds, postgre, etc), en caso de que el que se desea no este dentro de los tipos se debe instalar.
+- NOTA: Para ejecutar comandos de airflow en python es necesario entrar al container del webserver de airflow: 'docker exec -it container_id python' 
+# Implementando un DAG
+- En dags/primer_dag.py se definen dags de 3 maneras.
+- Cuando creas un archivo py en la carpeta dags en automatico reconoce los dags en ese script y los veras en la interfaz grafica
