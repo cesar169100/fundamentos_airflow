@@ -65,3 +65,5 @@ Tambien en Admin vamos a conexiones -> add new record -> Especificar sus atribut
 # Implementando un DAG
 - En dags/primer_dag.py se definen dags de 3 maneras.
 - Cuando creas un archivo py en la carpeta dags en automatico reconoce los dags en ese script y los veras en la interfaz grafica
+# Bash Operator
+- El codigo esta en dags/bash_operator.py
