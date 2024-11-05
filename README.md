@@ -45,11 +45,12 @@ puedes cambiar la version, por ejemplo, en vez de 2.3.3 pueder ser 2.10.0 que es
 AIRFLOW__CORE__LOAD_EXAMPLES: 'false' (linea 62)
 AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 5 (Este ya no viene en versiones recientes)
 - Ejecutar:
+docker volume prune
 docker compose down --volumes --remove-orphans
 mkdir -p ./dags ./logs ./plugins ./config
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 docker compose up airflow-init
-docker compose up
+docker compose up o docker compose up -d en vez de los 2 anteriores
 
 - Luego podrás acceder a la interfaz gráfica de Airflow mediante http://localhost:8080/ con user y pass igual a airflow
 - docker rm -f $(docker ps -aq) : Eliminar todos los conatiners
