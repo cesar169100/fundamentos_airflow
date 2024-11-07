@@ -66,5 +66,5 @@ Tambien en Admin vamos a conexiones -> add new record -> Especificar sus atribut
 # Implementando un DAG
 - En dags/primer_dag.py se definen dags de 3 maneras.
 - Cuando creas un archivo py en la carpeta dags en automatico reconoce los dags en ese script y los veras en la interfaz grafica
-# Bash Operator
-- El codigo esta en dags/bash_operator.py
+# Hook
+- Un hook es una herramienta que elimina la complejidad de interactuar con otra herramienta externa o servicio externo. Por ejemplo, detras de un PostgresOperator esta el PostgresHook. Los hooks gestionan la autenticación y facilitan las interacciones con esos servicios, permitiendo a las tasks ejecutar operaciones sin manejar directamente la conexión. Cuando ejecutas algo como hook = PostgresHook(postgres_conn_id='postgres') en realidad buscas una conexion llamada 'postgres' definida en la ui de airflow.
