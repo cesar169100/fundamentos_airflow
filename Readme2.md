@@ -41,3 +41,12 @@ Este readme es para el curso de Udemy.
 command: celery worker -q queue_1, de esta manera este worker se encargara de ejecutar las task que sean enviadas a la cola queue_1. El worker que dejes sin asignar un nombre de queue sera la cola default, ahi se ejecutaran las tareas por default a menos que no especifiques una cola en particular.
 - Un codigo que ejemplifica como asignar una task a una cola particular y por tanto a un worker es parallel_dag.py
 # Seccion 7: Implementing advanced concepts in airflow
+- Introducimos el concepto de subdags para agrupar tareas que puedan ser similares y luego que ese subdag sea parte de otro dag.
+- Usaremos el codigo de parallel_subdags.py como ejemplo y los subdags se definen en la carpeta subdags
+- Al parecer los subdags ya estan deprecados y como solo sirven para agrupar tareas, pues se hace ahora de forma mas sencilla con los taskGroups. En los mismos codigos anteriores se dice como.
+- Xcom contiene informacion que quisieras compartir entre tareas. Una manera de hacerlo es que una tarea guarde la info en algun lugar (csv, bd, etc) y la segunda tarea tome esa info para hacer su trabajo. La manera nativa de airflow es hacerlo mediante xcom (cross comunication) que se guarda en la metabase de datos de airflow. Xcom sirve para datos chicos como un diccionario que pudiera ser util para otra task. El codigo de ejemplo es xcom_dag.py
+- Elegir una task u otra en funcion de una condicion. En el mismo codigo xcom_dag.py viene como. Hay otros branch operators aparte del de python.
+- Los triggers son los criterios para ejecutar tareas, el criterio por defecto es all_succeed, es decir si todas las tareas de las que t3 depende corren con exito entonces t3 se ejecuta 
+([t1,t2] >> t3), pero hay otros criterios, por ejemplo que t3 se ejecute solo si una de las dos son exitosas o ambas fallan. Ejemplo en el mismo codigo anterior
+# Seccion 8: Creating airflow plugins with elasticsearch and postgreSQL
+- En esta seccion se vera como crear nuestros propios hooks, operadores, etc 
