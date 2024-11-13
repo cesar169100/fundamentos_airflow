@@ -3,16 +3,9 @@ Este readme es para el curso de Udemy.
 - Flujos de alta frecuencia(intervalos de segundos)
 - Transferencia de datos en tiempo real
 - Si el flujo es mu sencillo usa un cronjob y ya
-## Notas y GitOps
+## Notas
 - Definiciones basicas checar el primer readme.md al igual que la instalacion con docker.
 - Empezaremos este curso de manera practica con airflow en eks. En el curso de hands on solo se anotaran ejemplos y cosas importantes de la teoria.
-- Se puede definir un presupuesto(budget) en aws
-- FluxCD es una herramienta de GitOps para gestionar configuraciones y despliegues en Kubernetes mediante el uso de repositorios Git como la única fuente de verdad. Al monitorear cambios en los archivos de configuración almacenados en Git, FluxCD asegura que el estado de tu clúster siempre esté sincronizado con el contenido del repositorio.
-- FluxCD observa los cambios en un repositorio Git que contiene manifestos de Kubernetes. Cada vez que se actualizan, se activa un ciclo de sincronización.
-- FluxCD permite volver fácilmente a versiones anteriores en caso de errores, ya que siempre se puede recuperar el estado anterior desde Git.
-- repo del curso: https://github.com/marclamberti/airflow-materials-aws
-- Cloud9 de aws proporciona un IDE de desarrollo
-- helm repo add stable https://charts.helm.sh/stable
 # Curso airflow Hands on Guide
 ## Seccion 4: Primer data pipeline con airflow
 - En esta seccion se ha desarrolado un ejemplo de como seria un pipeline con airflow, se define el dag que contiene las task y posteriormente se definen todas esas task que componen al dag. Al final se especifica el orden/dependencias de las tasks, el codigo esta en dags/user_processing.py
@@ -40,7 +33,7 @@ Este readme es para el curso de Udemy.
 - Nuevamente, en el docker compose en la seccion de los airflow-worker hay un parametro que se llama command: celery worker (linea 152), aqui puedes modificarlo asi: 
 command: celery worker -q queue_1, de esta manera este worker se encargara de ejecutar las task que sean enviadas a la cola queue_1. El worker que dejes sin asignar un nombre de queue sera la cola default, ahi se ejecutaran las tareas por default a menos que no especifiques una cola en particular.
 - Un codigo que ejemplifica como asignar una task a una cola particular y por tanto a un worker es parallel_dag.py
-# Seccion 7: Implementing advanced concepts in airflow
+## Seccion 7: Implementing advanced concepts in airflow
 - Introducimos el concepto de subdags para agrupar tareas que puedan ser similares y luego que ese subdag sea parte de otro dag.
 - Usaremos el codigo de parallel_subdags.py como ejemplo y los subdags se definen en la carpeta subdags
 - Al parecer los subdags ya estan deprecados y como solo sirven para agrupar tareas, pues se hace ahora de forma mas sencilla con los taskGroups. En los mismos codigos anteriores se dice como.
@@ -48,5 +41,11 @@ command: celery worker -q queue_1, de esta manera este worker se encargara de ej
 - Elegir una task u otra en funcion de una condicion. En el mismo codigo xcom_dag.py viene como. Hay otros branch operators aparte del de python.
 - Los triggers son los criterios para ejecutar tareas, el criterio por defecto es all_succeed, es decir si todas las tareas de las que t3 depende corren con exito entonces t3 se ejecuta 
 ([t1,t2] >> t3), pero hay otros criterios, por ejemplo que t3 se ejecute solo si una de las dos son exitosas o ambas fallan. Ejemplo en el mismo codigo anterior
-# Seccion 8: Creating airflow plugins with elasticsearch and postgreSQL
+## Seccion 8: Creating airflow plugins with elasticsearch and postgreSQL
 - En esta seccion se vera como crear nuestros propios hooks, operadores, etc 
+- El archivo docker-compose-es.yaml es airflow pero tambien agrega elasticsearch.
+- Un Airflow plugin es una forma de extender la funcionalidad nativa de Airflow. Permite agregar nuevas capacidades, como operadores, hooks etc. Los plugins se implementan mediante Python y se registran en la carpeta plugins de tu instalación de Airflow
+- Para crear algo nuevo (operator, hook, etc) se necesita crear una clase (MyHookClass, MyOperatorClass, etc) que hereda de la clase AirflowPlugin. Al parecer, si agregas un nuevo plugin debes reiniciar la aplicacion de airflow para que puedas usar este nuevo plugin
+- El codigo de ejemplo para crear un hook que se comunique con elasticsearch esta en plugins como elastic_hook.py y en dags esta elastic_dag.py que usa el hook creado.
+## Apendice
+- En este apendice hay blogs para aprender a usar los operadores docker, kubernetes, setear variables, etc
