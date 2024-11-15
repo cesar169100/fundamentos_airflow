@@ -1,0 +1,50 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: airflow-cluster
+  region: us-east-1
+
+managedNodeGroups:
+  - name: workers
+    instanceType: t3.medium
+    privateNetworking: true
+    minSize: 1
+    maxSize: 3
+    desiredCapacity: 3
+    volumeSize: 20
+    ssh:
+      allow: true
+      # publicKeyName: airflow-workstation
+    labels: { role: worker }
+    tags:
+      nodegroup-role: worker
+    iam:
+      withAddonPolicies:
+        ebs: true
+        imageBuilder: true
+        efs: true
+        albIngress: true
+        autoScaler: true
+        cloudWatch: true
+        externalDNS: true
+
+# Notas:
+# imageBuilder: Habilita el uso de AWS Image Builder para la creación automatizada de imágenes 
+# de contenedor. Facilita la creación, prueba y despliegue de imágenes de contenedor 
+# personalizadas que cumplan con estándares específicos de seguridad y cumplimiento.
+# efs: Permite que los pods utilicen Amazon Elastic File System (EFS), un sistema de archivos 
+# distribuido y persistente. Ideal para aplicaciones que requieren un sistema de archivos 
+# compartido entre varios pods, como servidores web y sistemas de archivos distribuidos.
+# autoScaler: Activa el Cluster Autoscaler, que ajusta automáticamente el número de nodos en 
+# función de la demanda de recursos. Escala dinámicamente el clúster para manejar picos de 
+# carga o reducir costos cuando la demanda es baja.
+# cloudWatch: Habilita la integración con Amazon CloudWatch para monitorear métricas, logs y 
+# eventos del clúster. Ofrece visibilidad operativa y facilita la identificación de problemas 
+# en el clúster.
+# albIngress: Habilita el AWS Load Balancer Controller, que permite gestionar automáticamente 
+# Application Load Balancers (ALB). Se utiliza para dirigir el tráfico externo hacia servicios
+# dentro del clúster mediante reglas Ingress.
+# ebs: Permite a los pods en tu clúster usar Amazon Elastic Block Store (EBS) para almacenamiento 
+# persistente. Se utiliza para adjuntar volúmenes EBS a los nodos del clúster, ideal para 
+# aplicaciones que requieren almacenamiento persistente de datos, como bases de datos.

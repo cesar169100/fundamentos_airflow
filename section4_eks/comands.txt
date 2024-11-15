@@ -1,0 +1,7 @@
+# Creacion de los 3 namespaces
+kubectl create ns dev
+kubectl create ns staging
+kubectl create ns prod
+
+# Limpieza 
+eksctl delete cluster --wait --name=airflow-cluster
