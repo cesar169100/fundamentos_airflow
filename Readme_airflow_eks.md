@@ -9,7 +9,7 @@
 - helm repo add stable https://charts.helm.sh/stable
 ## Section 4: Creating cluster
 - Se levanta el cluster con el archivo cluster.yml
-- Este archivo para levantar el cluster tiene una manera mas practica de levantar addons como albIngress, servicio de volumenes ebs, etc. Es mas rapido pero si se requieren hacer especificaciones concretas como permisos(politicas), etc entonces se instalan estos addons de la forma manual vista en e curso de kubernetes.
+- Este archivo para levantar el cluster tiene una seccion de addons para instalar directo, sin embargo, no funciona no se instalan. Hay que hacerlo manual.
 - La parte de Flux se dejara de lado por el momento, es mas para temas de devops y que interactue Git con el cluster
 ## Section 5: Deploying airflow with DAGS
 - Doc oficial del chart de airflow escribir Helm Chart for Apache Airflow e ingresar a la pag oficial de airflow.apache.org

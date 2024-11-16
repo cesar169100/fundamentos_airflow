@@ -3,5 +3,12 @@ kubectl create ns dev
 kubectl create ns staging
 kubectl create ns prod
 
+# Levanta cluster
+eksctl create cluster -f cluster.yml
+
+# Instalaciones
+github.com/kubernetes-sigs/aws-ebs-csi-driver  --> Ir hasta abajo y entrar en Driver Installation.
+Intala aws alb, metric server, ebs, cluster autoscaler como en curso de kubernetes
+
 # Limpieza 
-eksctl delete cluster --wait --name=airflow-cluster
+eksctl delete cluster -f cluster.yml

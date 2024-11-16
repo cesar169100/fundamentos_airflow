@@ -30,6 +30,7 @@ managedNodeGroups:
         externalDNS: true
 
 # Notas:
+# Al parecer no se instala ninguno de los addons, hay que hacerlo manual.
 # imageBuilder: Habilita el uso de AWS Image Builder para la creación automatizada de imágenes 
 # de contenedor. Facilita la creación, prueba y despliegue de imágenes de contenedor 
 # personalizadas que cumplan con estándares específicos de seguridad y cumplimiento.

@@ -1,1 +1,19 @@
-##
+################## Instalacion de airflow
+## Agregar repos
+helm repo add apache-airflow https://airflow.apache.org/
+helm repo update
+
+## Valores
+Los valores para la instalacion de airflow estan en values.yaml
+
+## Intalar airflow en namespace dev
+helm install airflow-dev apache-airflow/airflow --namespace dev -f values.yaml
+
+## Verificar
+kubectl get pods -n dev
+
+## Actualizar configuracion despues de la instalacion
+helm upgrade airflow-dev apache-airflow/airflow --namespace dev -f values.yaml
+
+## Desinstalar
+helm uninstall airflow-dev --namespace dev
