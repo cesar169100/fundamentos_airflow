@@ -6,6 +6,10 @@ kubectl create ns prod
 # Levanta cluster
 eksctl create cluster -f cluster.yml
 
+# Descargar chart de airflow. values.yaml contiene los parametros de instalacion
+helm pull apache-airflow/airflow --untar
+cd airflow
+
 # Instalaciones
 github.com/kubernetes-sigs/aws-ebs-csi-driver  --> Ir hasta abajo y entrar en Driver Installation.
 Intala aws alb, metric server, ebs, cluster autoscaler como en curso de kubernetes

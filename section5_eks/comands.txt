@@ -5,9 +5,11 @@ helm repo update
 
 ## Valores
 Los valores para la instalacion de airflow estan en values.yaml
+helm template airflow-dev apache-airflow/airflow --namespace dev -f values.yaml > airflow_manifest.yaml
 
 ## Intalar airflow en namespace dev
 helm install airflow-dev apache-airflow/airflow --namespace dev -f values.yaml
+helm install airflow-dev bitnami/airflow --version 21.7.0 --namespace dev -f values.yaml
 
 ## Verificar
 kubectl get pods -n dev
@@ -17,3 +19,9 @@ helm upgrade airflow-dev apache-airflow/airflow --namespace dev -f values.yaml
 
 ## Desinstalar
 helm uninstall airflow-dev --namespace dev
+
+
+airflow sheduler pod error: Service token file does not exist
+nombre del serviceaccount: kubectl get pod airflow-dev-scheduler-59d554b597-fxp5r -n dev -o yaml | grep serviceAccountName
+verificar serviceaccount: kubectl get serviceaccount airflow-dev -n dev -o yaml
+habiltar montaje del token: kubectl patch serviceaccount airflow-dev -n dev -p '{"automountServiceAccountToken": true}'

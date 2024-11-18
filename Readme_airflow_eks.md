@@ -16,3 +16,6 @@
 - El repo del chart de airflow: https://github.com/apache/airflow/tree/main/chart
 - El KubernetesExecutor ejecuta las tareas en kuberntes, el scheduler de airflow manda una tarea u kubernetes levanta un pod para ejecutar esa tarea, un pod para cada tarea. Puedes definir que tantos recursos usar para cada task en especifico. Si las tareas son pequenas no conviene mucho, por eso una task en este caso es recomnedable que sea considerable.
 - Instala el driver de EBS-CSI lo cual aparentemente no es necesario pues ya viene el addon en cluster.yml. En caso de que no jale, instalar driver como en el curso de kubernetes
+- Instala airflow como se indica en comands.txt
+- fernetKey es una clave criptográfica utilizada para cifrar datos sensibles en Airflow, como conexiones o variables. Es fundamental para la seguridad de la instalación.
+- opciones: Probar opcion de bitnami, generar cluster con manifest cluster.yml que trae permisos de ebs y ademas instala en addon

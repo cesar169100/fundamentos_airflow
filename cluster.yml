@@ -16,9 +16,9 @@ managedNodeGroups:
     ssh:
       allow: true
       # publicKeyName: airflow-workstation
-    labels: { role: worker }
-    tags:
-      nodegroup-role: worker
+    # labels: { role: worker }
+    # tags:
+    #   nodegroup-role: worker
     iam:
       withAddonPolicies:
         ebs: true
@@ -29,8 +29,13 @@ managedNodeGroups:
         cloudWatch: true
         externalDNS: true
 
+addons:
+  - name: aws-ebs-csi-driver
+    version: latest
+    resolveConflicts: overwrite
 # Notas:
-# Al parecer no se instala ninguno de los addons, hay que hacerlo manual.
+# Al parecer no se instala ninguno de los addons, hay que hacerlo manual. Solo habilitan los 
+# permisos necesarios para que las herramientas asociadas funcionen correctamente.
 # imageBuilder: Habilita el uso de AWS Image Builder para la creación automatizada de imágenes 
 # de contenedor. Facilita la creación, prueba y despliegue de imágenes de contenedor 
 # personalizadas que cumplan con estándares específicos de seguridad y cumplimiento.
