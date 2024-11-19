@@ -21,9 +21,9 @@ serviceAccount:
   automountServiceAccountToken: true
 redis:
   enabled: false
-# postgresql:
-#   enabled: true
-#   persistence:
-#     enabled: true
-#     storageClass: "gp2"  # Reemplaza con tu StorageClass si es diferente
-#     size: 8Gi               # Tamaño del volumen
+scheduler:
+  automountServiceAccountToken: true
+web:
+  automountServiceAccountToken: true
+# worker:
+#   automountServiceAccountToken: true
