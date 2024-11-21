@@ -3,7 +3,8 @@
 global:
   defaultStorageClass: "gp2"
 auth:
-  fernetKey: "zTxhk7FuGqQVPZVoukLn5bGWOrgHzhQnBnaqAItcZGI="
+  fernetKey: "BfRwv6uOg9Nr3uVdL2jeR60nV2frcWPQyy5yXzx0YBM="
+  # fernetKey: "zTxhk7FuGqQVPZVoukLn5bGWOrgHzhQnBnaqAItcZGI="
 env:
   - name: "AIRFLOW__CORE__LOAD_EXAMPLES"
     value: "False"
