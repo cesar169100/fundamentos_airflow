@@ -34,8 +34,8 @@ addons:
     version: latest
     resolveConflicts: overwrite
 # Notas:
-# Al parecer no se instala ninguno de los addons, hay que hacerlo manual. Solo habilitan los 
-# permisos necesarios para que las herramientas asociadas funcionen correctamente.
+# Para especificar los addons a instalar hay que ponerlos en la seccion addons. Los que vienen
+# en la seccion iam solo son las politicas necesarias para su instalacion.
 # imageBuilder: Habilita el uso de AWS Image Builder para la creación automatizada de imágenes 
 # de contenedor. Facilita la creación, prueba y despliegue de imágenes de contenedor 
 # personalizadas que cumplan con estándares específicos de seguridad y cumplimiento.

@@ -9,10 +9,19 @@ helm template airflow-dev apache-airflow/airflow --namespace dev -f values.yaml 
 
 ## Intalar airflow en namespace dev
 helm install airflow-dev apache-airflow/airflow --namespace dev -f values.yaml
+# Opcion exitosa de instalacion
 helm install airflow-dev bitnami/airflow --version 21.7.0 --namespace dev -f values.yaml
 
 ## Verificar
 kubectl get pods -n dev
+
+## Verificar dags despues de la instalacion(si especificaste dags en el values.yaml)
+kubectl exec -it nombre_pod_scheduler -n dev -- /bin/bash
+# Una vez dentro de la terminal del pod para ver los .py :
+airflow dags list 
+# o verificar la ruta donde se almacenan con bitnami(se suele crear dentro de dags alguna otra
+carpeta con los .py dentro):
+ls /opt/bitnami/airflow/dags/carpeta
 
 ## Actualizar configuracion despues de la instalacion
 helm upgrade airflow-dev apache-airflow/airflow --namespace dev -f values.yaml

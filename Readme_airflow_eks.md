@@ -9,13 +9,13 @@
 - helm repo add stable https://charts.helm.sh/stable
 ## Section 4: Creating cluster
 - Se levanta el cluster con el archivo cluster.yml
-- Este archivo para levantar el cluster tiene una seccion de addons para instalar directo, sin embargo, no funciona no se instalan. Hay que hacerlo manual.
+- El archivo para levantar el cluster es cluster.yml
 - La parte de Flux se dejara de lado por el momento, es mas para temas de devops y que interactue Git con el cluster
 ## Section 5: Deploying airflow with DAGS
 - Doc oficial del chart de airflow escribir Helm Chart for Apache Airflow e ingresar a la pag oficial de airflow.apache.org
 - El repo del chart de airflow: https://github.com/apache/airflow/tree/main/chart
 - El KubernetesExecutor ejecuta las tareas en kuberntes, el scheduler de airflow manda una tarea u kubernetes levanta un pod para ejecutar esa tarea, un pod para cada tarea. Puedes definir que tantos recursos usar para cada task en especifico. Si las tareas son pequenas no conviene mucho, por eso una task en este caso es recomnedable que sea considerable.
 - Se agrego en el manifest del cluster (cluster.yaml) el addon de ebs pues es necesario para el despliegue.
-- Instala airflow como se indica en comands.txt, optamos por la version de bitnami. El archivo values.yaml tiene los parametros de configuracion para ser desplegado sin problemas
+- Instala airflow como se indica en comands.txt de esta seccion 5, optamos por la version de bitnami. El archivo values.yaml tiene los parametros de configuracion para ser desplegado sin problemas
 - fernetKey es una clave criptográfica utilizada para cifrar datos sensibles en Airflow, como conexiones o variables. Es fundamental para la seguridad de la instalación. El codigo para generar una es fernet_key.py
 

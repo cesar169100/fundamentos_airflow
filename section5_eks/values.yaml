@@ -28,3 +28,11 @@ web:
   automountServiceAccountToken: true
 # worker:
 #   automountServiceAccountToken: true
+## Leera los dags de un repo
+dags:
+  enabled: True
+  repositories:
+    - repository: https://github.com/cesar169100/fundamentos_airflow.git
+      branch: main
+      name: fundamentos-airflow
+      path: /dags
