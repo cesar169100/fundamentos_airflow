@@ -1,4 +1,13 @@
-# Borrar cluster
+## Desinstalar airflow
+helm uninstall airflow-dev --namespace dev
+
+## Borrar secrets
+kubectl delete -f secrets.yaml
+
+## Borrar namespace dev
+kubectl delete ns dev
+
+## Borrar cluster
 eksctl delete cluster -f cluster.yml
 
 # Don't forget to delete the EFS storage

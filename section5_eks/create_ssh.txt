@@ -1,0 +1,15 @@
+## Generar par de llaves publico/privada
+ssh-keygen -t rsa -b 4096
+rsa: Algoritmo
+4096: Complejidad matematica
+pedira un nombre para el archivo en el que se guardara la llave, ponselo(private-git,
+por ejemlo) y enter a lo demas.
+Se generan dos archivos, uno sera private-git y otro private-git.pub(la llave publica). Abre la
+llave publica, copiala y ve a Github; del repo donde estan tus dags, ve a settings -> Deploy keys
+-> Add deploy key -> Dale un titulo, pega la llave y marca la casilla allow write access. Asi se
+agrega la llave a tu repo
+
+## Pasar llave privada a base64
+base64 nombre_private_key -w 0 > archivo.txt
+nombre_private_key: private-git continuando con el ejemplo anterior
+Esto porque el parametro de ssh del values.yaml espera que sea en base64

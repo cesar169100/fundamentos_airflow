@@ -251,3 +251,4 @@ $RECYCLE.BIN/
 # Otros
 logs/
 *.pdf
+secrets.yaml

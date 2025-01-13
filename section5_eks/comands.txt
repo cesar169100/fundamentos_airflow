@@ -23,6 +23,10 @@ airflow dags list
 carpeta con los .py dentro):
 ls /opt/bitnami/airflow/dags/carpeta
 
+## Si usas ssh para clonar tus dags, crea el secret para que sepa las llaves:
+kubectl apply -f secrets.yaml
+Despues verifica como se hizo anteriormente
+
 ## Actualizar configuracion despues de la instalacion
 helm upgrade airflow-dev apache-airflow/airflow --namespace dev -f values.yaml
 
